@@ -2,6 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<windows.h>
+using namespace std;
 typedef struct student     //定义结构体
 {
     char name[20];    //姓名
@@ -36,6 +37,9 @@ void print()    //主菜单
     printf("      ~~~~~退~~~~~~~~~~出~~~~~~~~~~请~~~~~~~~~~按~~~~~~~~~~9~~~~~\n");
     printf("      -----------------------------------------------------------\n\n");
 }
+
+
+
 
 void input(stu *p1)    //输入相关数据
 {
@@ -109,6 +113,50 @@ stu * inputdata()     //数据输入的函数
         }
         return(p1->next);
     }
+}
+
+void insert()      //插入数据
+{
+    int i;
+    char named[20];
+    stu *p1,*p2,*p3;
+    p1=head;
+    p3=(stu *)malloc(sizeof(stu));
+    p3->next=NULL;
+    printf("\n\t\t\t☆☆☆插入数据☆☆☆\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("请输入插入者的资料:\n");
+    input(p3);
+    printf("\n插入选项\n");
+    printf("1.首位置插入\t2.尾位置插入\t3.前插\n");
+    printf("请输入你的选择:");
+    scanf("%d",&i);
+    switch(i)
+    {
+    case 1:p3->next=p1;
+        head=p3;
+        break;
+    case 2:while(p1->next!=NULL)
+           {
+               p2=p1;
+               p1=p1->next;
+           }
+        p1->next=p3;
+        break;
+    case 3:printf("请输入姓名（前插）:");
+        scanf("%s",named);
+        while(strcmp(named,p1->name)!=0)
+        {
+            p2=p1;
+            p1=p1->next;
+        }
+        p2->next=p3;
+        p3->next=p1;
+        break;
+    }
+    printf("插入成功!\n");
+    printf("======================================================================\n");
+    return;
 }
 void screen()  //用于显示页面 
 {

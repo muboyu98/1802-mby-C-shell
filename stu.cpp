@@ -158,6 +158,152 @@ void insert()      //插入数据
     printf("======================================================================\n");
     return;
 }
+void deleted()          //删除数据
+{
+    stu *p1,*p2;
+    char Name[20];  //想要删除的人的姓名
+    printf("\n\t\t\t☆☆☆删除数据☆☆☆\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("请输入要删除的姓名:");
+    scanf("%s",Name);
+    p1=head;
+    if(head==NULL)
+    {
+    printf("内存空空神马都没有!\n");
+    printf("======================================================================\n");
+    return;
+    }
+    if(strcmp(Name,p1->name)==0)
+    {
+    head=p1->next;
+    printf("删除成功!\n");
+    printf("======================================================================\n");
+    return;
+    }
+    while(p1!=NULL&&(strcmp(Name,p1->name)!=0))
+    {
+    p2=p1;
+    p1=p1->next;
+    }
+    if(p1==NULL)
+    {
+    printf("此人不存在!\n");
+    printf("======================================================================\n");
+    return;
+    }
+    if(p1->next!=NULL)
+    {
+    p1=p1->next;
+    p2->next=p1;
+    printf("删除成功!\n");
+    printf("======================================================================\n");
+    return;
+    }
+    else
+    {
+    p2->next=NULL;
+    printf("删除成功!\n");
+    printf("======================================================================\n");
+    return;
+    }
+}
+
+void update(stu *p2)   //通过姓名查找修改数据
+{
+    char name[20];
+    int b=0,i;
+    printf("\n\t\t\t☆☆☆修改数据☆☆☆\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("请输入将要修改人的姓名:");
+    scanf("%s",name);
+    while(p2!=NULL)
+    {
+        if(strcmp(name,p2->name)==0)
+        {
+            printf("该同学的基本信息\n");
+            printf("姓名:%s\n",p2->name);
+            printf("学号:%s\t",p2->num);
+             printf("性别:%s\t",p2->sex);
+            printf("籍贯:%s\t",p2->from);
+            printf("政治面貌:%s\t",p2->political);
+            printf("手机号:%s\t",p2->phone);
+            printf("QQ号:%s\t",p2->QQ);
+            printf("宿舍:%s\n",p2->dorm);
+            printf("\n请选择要修改的信息\n");
+            printf("\t1.姓名\t2.学号\t3.性别\t4.籍贯\n\t5.政治面貌\t6.手机号\t7.QQ\t8.宿舍\n");
+            printf("\n您的选择是(1~8):");
+            scanf("%d",&i);
+            printf("请输入修改之后的内容\n");
+            switch(i)
+            {
+            case 1:printf("姓名:");
+                scanf("%s",&p2->name);
+                break;
+            case 2:printf("学号:");
+                scanf("%s",&p2->num);
+                break;
+            case 3:printf("性别:");
+                scanf("%s",&p2->sex);
+                break;
+            case 4:printf("籍贯:");
+                scanf("%s",&p2->from);
+                break;
+            case 5:printf("政治面貌:");
+                scanf("%s",&p2->political);
+                break;
+            case 6:printf("手机号:");
+                scanf("%s",&p2->phone);
+                break;
+            case 7:printf("QQ:");
+                scanf("%s",&p2->QQ);
+                break;
+            case 8:printf("宿舍:");
+                scanf("%d",&p2->dorm);
+                break;
+            }
+            printf("\n修改成功!\n");
+            printf("=========================================================================\n");
+            b=1;
+        }
+        p2=p2->next;
+    }
+    if(b==0)
+    {
+        printf("没有找到该人的资料!\n");
+    }
+}
+void find(stu *p2)        //通过姓名查找查看数据的函数
+{
+    char name[20];
+    int b=0;
+    printf("\n\t\t\t☆☆☆查看数据☆☆☆\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("请输入您想查找人的姓名:");
+    scanf("%s",name);
+    while(p2!=NULL)
+    {
+        if(strcmp(name,p2->name)==0)
+        {
+            printf("你要找到的数据\n");
+            printf("姓名:%s\n",p2->name);
+            printf("学号:%s\t",p2->num);
+            printf("性别:%s\t",p2->sex);
+            printf("籍贯:%s\t",p2->from);
+            printf("政治面貌:%s\t",p2->political);
+            printf("手机号:%s\t",p2->phone);
+            printf("QQ号:%s\t",p2->QQ);
+            printf("宿舍:%s\n",p2->dorm);
+            printf("======================================================================\n");
+            b=1;
+        }
+        p2=p2->next;
+    }
+    if(b==0)
+    {
+        printf("\n您要查找的人不存在!\n");
+    }
+}
+
 void screen()  //用于显示页面 
 {
     int i;
@@ -198,4 +344,6 @@ int main()
     int i;
     system("color 4e");
     screen();
+    Sleep(3000);
+    print();
 }

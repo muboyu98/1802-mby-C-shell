@@ -158,6 +158,36 @@ void insert()      //插入数据
     printf("======================================================================\n");
     return;
 }
+void save(stu *p2)   //保存数据
+{
+    FILE *fp;
+    char file[15];
+    printf("\n\t\t\t☆☆☆保存数据☆☆☆\n");
+    printf("----------------------------------------------------------------------\n");
+    printf("输入文件名:");
+    scanf("%s",file);
+    if((fp=fopen(file,"w"))==NULL)
+    {
+        printf("cannot open this file\n");
+        exit(0);
+    }
+    fprintf(fp,"姓名\t学号\t性别\t籍贯\t政治面貌\t手机号\tQQ号\t宿舍\n");
+    while(p2!=NULL)
+    {
+        fprintf(fp,"%s\t",p2->name);
+        fprintf(fp,"%s\t",p2->num);
+        fprintf(fp,"%s\t",p2->sex);
+        fprintf(fp,"%s\t",p2->from);
+        fprintf(fp,"%s\t",p2->political);
+        fprintf(fp,"%s\t",p2->phone);
+        fprintf(fp,"%s\t",p2->QQ);
+        fprintf(fp,"%s\n",p2->dorm);
+        p2=p2->next;
+    }
+    printf("\n保存成功!\n");
+    printf("======================================================================\n");
+    fclose(fp);
+}
 void deleted()          //删除数据
 {
     stu *p1,*p2;
@@ -346,4 +376,44 @@ int main()
     screen();
     Sleep(3000);
     print();
+    while(1)
+    {
+        printf("请输入你的选择(1~9):");
+        loop:scanf("%d",&i);
+        if(i<1||i>9)
+        {
+            printf("输入有误,请在1~9中进行选择:");
+            goto loop;
+        }
+        switch(i)
+        {
+        case 1:
+            inputdata();
+            break;
+        case 2:
+            lookdata(head);
+            break;
+        case 3:
+            insert();
+            break;
+        case 4:
+             deleted();
+            break;
+        case 5:
+            find(head);
+            break;
+        case 6:
+            update(head);
+            break;
+        case 7:
+            save(head);
+            break;
+        case 8:
+            print();
+            break;
+        case 9:
+            exit(1);
+            break;
+        }
+    }
 }

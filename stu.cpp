@@ -36,6 +36,80 @@ void print()    //主菜单
     printf("      ~~~~~退~~~~~~~~~~出~~~~~~~~~~请~~~~~~~~~~按~~~~~~~~~~9~~~~~\n");
     printf("      -----------------------------------------------------------\n\n");
 }
+
+void input(stu *p1)    //输入相关数据
+{
+    printf("姓名:");
+    scanf("%s",&p1->name);
+    printf("学号:");
+    scanf("%s",&p1->num);
+    printf("性别:");
+    scanf("%s",&p1->sex);
+    printf("籍贯:");
+    scanf("%s",&p1->from);
+    printf("政治面貌:");
+    scanf("%s",&p1->political);
+    printf("手机号:");
+    scanf("%s",&p1->phone);
+    printf("QQ号:");
+    scanf("%s",&p1->QQ);
+    printf("宿舍:");
+    scanf("%s",&p1->dorm);
+}
+
+
+stu * inputdata()     //数据输入的函数
+{
+    stu *p1,*p2;
+    int i=1;
+    p1=(stu *)malloc(sizeof(stu));
+    if(p1!=NULL)
+    {
+        head=p1;
+        printf("\n\t\t\t☆☆☆输入数据☆☆☆\n");
+        printf("------------------------------------------------------------------\n");
+        printf("在姓名处输入“ok”代表输入数据结束\n");
+        while(i)
+        {
+            printf("姓名:");
+            scanf("%s",&p1->name);
+            if(strcmp(p1->name,"ok")==0)
+            {
+                printf("\n输入完毕!\n");
+                printf("========================================================================\n");
+                i=0;
+                p2->next=NULL;
+                free(p1);
+                p1=p2;
+            }
+            else
+            {
+                printf("学号:");
+                scanf("%s",&p1->num);
+                printf("性别:");
+                scanf("%s",&p1->sex);
+                printf("籍贯:");
+                 scanf("%s",&p1->from);
+                printf("政治面貌:");
+                scanf("%s",&p1->political);
+                printf("手机号:");
+                scanf("%s",&p1->phone);
+                printf("QQ号:");
+                scanf("%s",&p1->QQ);
+                printf("宿舍:");
+                scanf("%s",&p1->dorm);
+                printf("=====================================\n");
+                p2=p1;
+                p1=(stu *)malloc(sizeof(stu));
+                if(p1!=NULL)
+                {
+                    p2->next=p1;
+                }
+            }
+        }
+        return(p1->next);
+    }
+}
 void screen()  //用于显示页面 
 {
     int i;

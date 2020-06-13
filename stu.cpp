@@ -297,7 +297,7 @@ void deleted()          //删除数据
 }
 
 
-find(stu *p2)        //通过姓名查找查看数据的函数
+void find(stu *p2)        //通过姓名查找查看数据的函数
 {
     char name[20];
     int b=0;
@@ -330,7 +330,7 @@ find(stu *p2)        //通过姓名查找查看数据的函数
 }
 
 
-update(stu *p2)   //通过姓名查找修改数据
+void update(stu *p2)   //通过姓名查找修改数据
 {
     char name[20];
     int b=0,i;
@@ -396,7 +396,7 @@ update(stu *p2)   //通过姓名查找修改数据
 }
 
 
-save(stu *p2)   //保存数据
+void save(stu *p2)   //保存数据
 {
     FILE *fp;
     char file[15];
@@ -449,7 +449,7 @@ void screen()
 int main()
 {
     int i;
-    system("color 4e");
+    system("color 5e");
     screen();
     Sleep(3000);
     print();

@@ -5,14 +5,14 @@
 using namespace std;
 typedef struct student     //定义结构体
 {
-    char name[20];    //姓名
-    char num[15];      //学号
-    char sex[10];     //性别
-    char from[20];    //籍贯
-    char political[10];    //政治面貌
-    char phone[15];      //手机号
-    char QQ[15];         //QQ号
-    char dorm[10];     //宿舍
+    char name[100];    //姓名
+    char num[100];      //学号
+    char sex[100];     //性别
+    char from[100];    //籍贯
+    char political[100];    //政治面貌
+    char phone[100];      //手机号
+    char QQ[100];         //QQ号
+    char dorm[100];     //宿舍
     struct student *next;  //结构体指针
 }stu;
 stu *head;
@@ -455,8 +455,13 @@ int main()
     print();
     while(1)
     {
+    	int flag=1; 
         printf("请输入你的选择(1~9):");
-        loop:scanf("%d",&i);
+        loop:flag=scanf("%d",&i);
+        if(!flag) {
+        	printf("输入有误,不能在主页面中输入除了数字意外的任何输入，请您重新进入程序。。。");
+            break;
+		}
         if(i<1||i>9)
         {
             printf("输入有误,请在1~9中进行选择:");
